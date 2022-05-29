@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/eslab/CLionProjects/GEMM_int4
+# Install script for directory: C:/Users/eslab/CLionProjects/GEMM
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/GEMM_int4")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/GEMM")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/eslab/CLionProjects/GEMM_int4/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/eslab/CLionProjects/GEMM/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

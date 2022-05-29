@@ -1,4 +1,3 @@
 #!/bin/bash
-
-g++ -o run main.cpp
-./run
+g++ main.cpp -o GEMM -I/header/
+./GEMM

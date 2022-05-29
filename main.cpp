@@ -1,82 +1,150 @@
 #include <iostream>
-#include <arm_neon.h>
-#include "header/MatrixMap.h"
+#include<cstdlib>
+#include<ctime>
+#include <time.h>
+
 #include "header/Type.h"
-#include <typeinfo>
+#include "header/MatrixMap.h"
+#include "header/NEGEMMInterleave4x4Kernel.h"
+
+#include "NEGEMMInterleave4x4Kernel.cpp"
+#include "MatrixMap.cpp"
+#include "run_NEGEMM_u4.cpp"
+
+
+//#define M 8*15
+//#define K 4*15
+//#define N 32*15
 
 using namespace std;
-uint8x16_t double_elements(	uint8x16_t input)
 
+int8_t getRandomNumber() { 
+    int8_t min = 0; int8_t max = 7;
+    static const double fraction = 1.0 / (RAND_MAX + 1.0); 
+    return min + static_cast<int8_t>((max - min + 1) * (std::rand() * fraction)); 
+}
+
+void gemm_nn(int gM, int gN, int gK, float ALPHA,  int4_t *inA, int lda,int4_t *inB, int ldb,int16_t *C, int ldc)
 {
+    clock_t start, end;
+    double result;
+    start = clock();
 
-    return(vmulq_u8(input, input));
+    int i,j,k;
+    for(i = 0; i < gM; ++i){
+        for(j = 0; j < gN; ++j){
+            for(k = 0; k < gK/2; ++k){
+                int4_t A_PART = {inA[i*lda/2+k].val0, inA[i*lda/2+k].val1};
+                if(j%2==0){
+                    C[i*ldc+j] += A_PART.val0 * inB[k*ldb/2+j/2].val0;
+                    C[i*ldc+j] += A_PART.val1 * inB[(k+1)*ldb/2+j/2].val0;
 
+                }else{
+                    C[i*ldc+j] += A_PART.val0*inB[k*ldb/2+j/2].val1;
+                    C[i*ldc+j] += A_PART.val1*inB[(k+1)*ldb/2+j/2].val1;
+
+                }
+
+            }
+        }
+    }
+
+    end = clock();
+    result = (double)(end - start);
+    printf("\n%f\n\n", result/CLOCKS_PER_SEC);
+
+    //printf("\ngemm_NN elapsed time = %f (ms)\n\n", result);
 }
-template <typename T>
-char* function(T a){
-    return const_cast<char*>(typeid(a).name());
-}
-int main() {
-/*
-    uint8_t a[] = {1,2,3,4,5,6,7,8, 9,10,11,12,13,14,15,16};
-    uint8_t b[] = {1,2,3,4,5,6,7,8, 1,2,3,4,1,2,3,4};
-    printf("%u\n", a[0]);
-    uint8x16_t res_add = vaddq_u8(vld1q_u8(a),vld1q_u8(b));
-    uint8x16_t res_mul = double_elements(vld1q_u8(a));
-    printf("%u\n", res_add[15]);
-    printf("%u\n", res_mul[15]);*/
-/*
-    cout << vgetq_lane_u8(double_elements(vld1q_u8(a)),0) <<endl;
-    double_elements(a);
+int main()
+{
+    for(int i =15; i < 16; i++){
 
-    float16x4_t b = double_elements(vld1_f16(a));
-    cout << vget_lane_u16(b,1) << endl;
-    cout << res[0] << endl;*/
+    int M = 8*i;
+    int K = 4*i;
+    int N = 32*i;    
+
+    int4_t* input           = new int4_t[ M*K ];
+    int4_t* weight          = new int4_t[ N*K ];
+    int4_t* in_interleave   = new int4_t[ M*K ];
+    int16_t* output         = new int16_t[ N*M ];
 
 
-    float16x8x4_t c =
-            {
-                    {
-                            vdupq_n_f16(0.f),
-                            vdupq_n_f16(0.f),
-                            vdupq_n_f16(0.f),
-                            vdupq_n_f16(0.f)
-                    }
-            };
+    for(int i = 0; i < M ;i ++){
 
-    float16_t mtx_a0[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-    float16_t mtx_b0[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+        for(int j = 0; j < K/2 ; j++){
 
-    const float16x8_t p00 = vld1q_f16(mtx_a0);
-    const float16x8_t p02 = vld1q_f16(mtx_a0 + 8);
+            (input + i * K/2 + j)->val0 =getRandomNumber();
+            (input + i * K/2 + j)->val1 =getRandomNumber();
+
+        }
+    }
+    for(int i = 0; i < K ;i ++){
+
+        for(int j = 0; j < N/2 ; j++){
+            
+
+            (weight + i * N/2 + j)->val0 =getRandomNumber();
+            (weight + i * N/2 + j)->val1 =getRandomNumber();
+
+        }
+    }
+
+    MatrixMap<int4_t> mtx_in            = {input, M, K};
+    MatrixMap<int4_t> mtx_we            = {weight, K, N};
+    MatrixMap<int4_t> mtx_in_interleave = {in_interleave, 1, M * K };
+    MatrixMap<int16_t> mtx_out          = {output, M, N };
+
+    // for(int i =0 ;i < M; i++){
+    //     for(int j =0 ; j < K/2; j++)
+
+    //         printf("%d %d || ", mtx_in.ptr()[i*K/2+j].val0, mtx_in.ptr()[i*K/2+j].val1);
+
+    //     cout << "\n";
 
 
-    const float16x8_t q00 = vld1q_f16(mtx_b0);
-    const float16x8_t q02 = vld1q_f16(mtx_b0 + 8);
+    // }
+    // cout << "\n"; 
 
-    vgetq_lane_f16(p00, 0);
-    vld1q_f16(mtx_b0);
-//    vmulq_n_f16(vld1q_f16(mtx_b0), vgetq_lane_f16(p00, 0));
-//    cout << q00[0] << endl;
-//    vmulq_n_f16(q00, vgetq_lane_f16(p00, 0));
-//    c.val[0] = vaddq_f16(c.val[0], vmulq_n_f16(vld1q_f16(mtx_b0), vgetq_lane_f16(p00, 0)));
+    // for(int i = 0; i < K ;i ++){
+
+    //     for(int j = 0; j < N/2 ; j++){
+
+    //         printf("%d %d || ", mtx_we.ptr()[ i * N/2 + j].val0, mtx_we.ptr()[ i * N/2 + j].val1);
 
 
-    int8x8_t ai= {1,2,3,4,5,6,7,8};
-    int8x8_t bi= {9,10,11,12,13,14,15,16};
+    //     }
+    //     cout << "\n";
 
-    int8x8_t ci = vhadd_s8(ai,bi);
+    // }
+    gemm_nn( M,  N,  K,  1.0, input, K,weight, N,output, N);
+    
 
-    int8x8x2_t abinterleave = vzip_s8(ai,bi);
+    // cout << "\n=============run_matrix_matrix_multiply_s4 start==========================\n" << endl;
+    clock_t start, end;
+    double result;
+    start = clock();
+    run_matrix_matrix_multiply_s4(  &mtx_in,
+                                    &mtx_we,
+                                    &mtx_out,
+                                    1.0 );
+    end = clock();
+    result = (double)(end - start);
 
-    int16x8_t ai16= {1,2,3,4,5,6,7,8};
+    //printf("\nrun_matrix_matrix_multiply_s4 elapsed time = %f (ms)\n\n", result);
+    printf("\n%f\n\n", result/CLOCKS_PER_SEC);
+    printf("\n%ld\n\n", CLOCKS_PER_SEC);
 
-    uint8x8_t ciu = vqshlu_n_s8 (ai,2);
-    int8x8_t ciu2 = vshl_n_s8 (ai,2);
 
-    for(int i =0 ;i < 16; i++)
-        printf("%d\n", abinterleave.val[1][i]);
 
-    cout << "Hello, World?" << endl;
+    // for(int i =0 ; i < M; i++){
+
+    //     for(int j=0; j < N; j++)
+    //         printf("%4d ",mtx_out.ptr()[ i*N + j ]);
+    //     cout << "\n";
+    // }
+
+    // cout << "\n=============run_matrix_matrix_multiply_s4 finish=========================\n" << endl ;
+   }
+
     return 0;
 }

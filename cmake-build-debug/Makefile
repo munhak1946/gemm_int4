@@ -47,10 +47,10 @@ RM = C:\Users\eslab\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\201.7846.88\
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\eslab\CLionProjects\GEMM_int4
+CMAKE_SOURCE_DIR = C:\Users\eslab\CLionProjects\GEMM
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\eslab\CLionProjects\GEMM_int4\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\eslab\CLionProjects\GEMM\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\eslab\CLionProjects\GEMM_int4\cmake-build-debug\CMakeFiles C:\Users\eslab\CLionProjects\GEMM_int4\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\eslab\CLionProjects\GEMM\cmake-build-debug\CMakeFiles C:\Users\eslab\CLionProjects\GEMM\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\eslab\CLionProjects\GEMM_int4\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\eslab\CLionProjects\GEMM\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -110,71 +110,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named GEMM_int4
+# Target rules for targets named GEMM
 
 # Build rule for target.
-GEMM_int4: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 GEMM_int4
-.PHONY : GEMM_int4
+GEMM: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 GEMM
+.PHONY : GEMM
 
 # fast build rule for target.
-GEMM_int4/fast:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/build
-.PHONY : GEMM_int4/fast
+GEMM/fast:
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/build
+.PHONY : GEMM/fast
 
-MatrixMap.obj: MatrixMap.cpp.obj
+GEMM_u4.obj: GEMM_u4.cpp.obj
 
-.PHONY : MatrixMap.obj
-
-# target to build an object file
-MatrixMap.cpp.obj:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/MatrixMap.cpp.obj
-.PHONY : MatrixMap.cpp.obj
-
-MatrixMap.i: MatrixMap.cpp.i
-
-.PHONY : MatrixMap.i
-
-# target to preprocess a source file
-MatrixMap.cpp.i:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/MatrixMap.cpp.i
-.PHONY : MatrixMap.cpp.i
-
-MatrixMap.s: MatrixMap.cpp.s
-
-.PHONY : MatrixMap.s
-
-# target to generate assembly for a file
-MatrixMap.cpp.s:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/MatrixMap.cpp.s
-.PHONY : MatrixMap.cpp.s
-
-NEGEMM_int4.obj: NEGEMM_int4.cpp.obj
-
-.PHONY : NEGEMM_int4.obj
+.PHONY : GEMM_u4.obj
 
 # target to build an object file
-NEGEMM_int4.cpp.obj:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/NEGEMM_int4.cpp.obj
-.PHONY : NEGEMM_int4.cpp.obj
+GEMM_u4.cpp.obj:
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/GEMM_u4.cpp.obj
+.PHONY : GEMM_u4.cpp.obj
 
-NEGEMM_int4.i: NEGEMM_int4.cpp.i
+GEMM_u4.i: GEMM_u4.cpp.i
 
-.PHONY : NEGEMM_int4.i
+.PHONY : GEMM_u4.i
 
 # target to preprocess a source file
-NEGEMM_int4.cpp.i:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/NEGEMM_int4.cpp.i
-.PHONY : NEGEMM_int4.cpp.i
+GEMM_u4.cpp.i:
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/GEMM_u4.cpp.i
+.PHONY : GEMM_u4.cpp.i
 
-NEGEMM_int4.s: NEGEMM_int4.cpp.s
+GEMM_u4.s: GEMM_u4.cpp.s
 
-.PHONY : NEGEMM_int4.s
+.PHONY : GEMM_u4.s
 
 # target to generate assembly for a file
-NEGEMM_int4.cpp.s:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/NEGEMM_int4.cpp.s
-.PHONY : NEGEMM_int4.cpp.s
+GEMM_u4.cpp.s:
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/GEMM_u4.cpp.s
+.PHONY : GEMM_u4.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -182,7 +155,7 @@ main.obj: main.cpp.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/main.cpp.obj
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -191,7 +164,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -200,35 +173,8 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/main.cpp.s
 .PHONY : main.cpp.s
-
-quantization.obj: quantization.cpp.obj
-
-.PHONY : quantization.obj
-
-# target to build an object file
-quantization.cpp.obj:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/quantization.cpp.obj
-.PHONY : quantization.cpp.obj
-
-quantization.i: quantization.cpp.i
-
-.PHONY : quantization.i
-
-# target to preprocess a source file
-quantization.cpp.i:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/quantization.cpp.i
-.PHONY : quantization.cpp.i
-
-quantization.s: quantization.cpp.s
-
-.PHONY : quantization.s
-
-# target to generate assembly for a file
-quantization.cpp.s:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/quantization.cpp.s
-.PHONY : quantization.cpp.s
 
 # Help Target
 help:
@@ -236,21 +182,15 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... GEMM_int4
+	@echo ... GEMM
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... MatrixMap.obj
-	@echo ... MatrixMap.i
-	@echo ... MatrixMap.s
-	@echo ... NEGEMM_int4.obj
-	@echo ... NEGEMM_int4.i
-	@echo ... NEGEMM_int4.s
+	@echo ... GEMM_u4.obj
+	@echo ... GEMM_u4.i
+	@echo ... GEMM_u4.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... quantization.obj
-	@echo ... quantization.i
-	@echo ... quantization.s
 .PHONY : help
 
 

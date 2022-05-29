@@ -1,4 +1,4 @@
-C:\Users\eslab\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\201.7846.88\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\eslab\CLionProjects\GEMM_int4
+C:\Users\eslab\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\201.7846.88\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\eslab\CLionProjects\GEMM
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/eslab/CLionProjects/GEMM_int4/cmake-build-debug
+-- Build files have been written to: C:/Users/eslab/CLionProjects/GEMM/cmake-build-debug

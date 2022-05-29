@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/eslab/CLionProjects/GEMM/MatrixMap.cpp
+header/MatrixMap.h
+C:/Users/eslab/CLionProjects/GEMM/header/MatrixMap.h
+
+C:/Users/eslab/CLionProjects/GEMM/NEGEMMInterleave4x4Kernel.cpp
+cstring
+-
+header/NEGEMMInterleave4x4Kernel.h
+C:/Users/eslab/CLionProjects/GEMM/header/NEGEMMInterleave4x4Kernel.h
+
+C:/Users/eslab/CLionProjects/GEMM/header/MatrixMap.h
+
+C:/Users/eslab/CLionProjects/GEMM/header/NEGEMMInterleave4x4Kernel.h
+MatrixMap.h
+C:/Users/eslab/CLionProjects/GEMM/header/MatrixMap.h
+
+C:/Users/eslab/CLionProjects/GEMM/header/Type.h
+
+C:/Users/eslab/CLionProjects/GEMM/main.cpp
+iostream
+-
+header/Type.h
+C:/Users/eslab/CLionProjects/GEMM/header/Type.h
+header/MatrixMap.h
+C:/Users/eslab/CLionProjects/GEMM/header/MatrixMap.h
+header/NEGEMMInterleave4x4Kernel.h
+C:/Users/eslab/CLionProjects/GEMM/header/NEGEMMInterleave4x4Kernel.h
+NEGEMMInterleave4x4Kernel.cpp
+C:/Users/eslab/CLionProjects/GEMM/NEGEMMInterleave4x4Kernel.cpp
+MatrixMap.cpp
+C:/Users/eslab/CLionProjects/GEMM/MatrixMap.cpp
+

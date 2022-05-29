@@ -12,6 +12,7 @@ public:
     int row, col;
     MatrixMap(T* _input, int _row, int _col);
     T* ptr();
+    int* info();
     ~MatrixMap();
 
 };

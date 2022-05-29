@@ -43,16 +43,16 @@ RM = C:\Users\eslab\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\201.7846.88\
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\eslab\CLionProjects\GEMM_int4
+CMAKE_SOURCE_DIR = C:\Users\eslab\CLionProjects\GEMM
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\eslab\CLionProjects\GEMM_int4\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\eslab\CLionProjects\GEMM\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/GEMM_int4.dir/all
+all: CMakeFiles/GEMM.dir/all
 
 .PHONY : all
 
@@ -62,36 +62,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/GEMM_int4.dir/clean
+clean: CMakeFiles/GEMM.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/GEMM_int4.dir
+# Target rules for target CMakeFiles/GEMM.dir
 
 # All Build rule for target.
-CMakeFiles/GEMM_int4.dir/all:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/depend
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\eslab\CLionProjects\GEMM_int4\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5 "Built target GEMM_int4"
-.PHONY : CMakeFiles/GEMM_int4.dir/all
+CMakeFiles/GEMM.dir/all:
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/depend
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\eslab\CLionProjects\GEMM\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target GEMM"
+.PHONY : CMakeFiles/GEMM.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/GEMM_int4.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\eslab\CLionProjects\GEMM_int4\cmake-build-debug\CMakeFiles 5
-	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/GEMM_int4.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\eslab\CLionProjects\GEMM_int4\cmake-build-debug\CMakeFiles 0
-.PHONY : CMakeFiles/GEMM_int4.dir/rule
+CMakeFiles/GEMM.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\eslab\CLionProjects\GEMM\cmake-build-debug\CMakeFiles 3
+	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/GEMM.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\eslab\CLionProjects\GEMM\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/GEMM.dir/rule
 
 # Convenience name for target.
-GEMM_int4: CMakeFiles/GEMM_int4.dir/rule
+GEMM: CMakeFiles/GEMM.dir/rule
 
-.PHONY : GEMM_int4
+.PHONY : GEMM
 
 # clean rule for target.
-CMakeFiles/GEMM_int4.dir/clean:
-	$(MAKE) -f CMakeFiles\GEMM_int4.dir\build.make CMakeFiles/GEMM_int4.dir/clean
-.PHONY : CMakeFiles/GEMM_int4.dir/clean
+CMakeFiles/GEMM.dir/clean:
+	$(MAKE) -f CMakeFiles\GEMM.dir\build.make CMakeFiles/GEMM.dir/clean
+.PHONY : CMakeFiles/GEMM.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
